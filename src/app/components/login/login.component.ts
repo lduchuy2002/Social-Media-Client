@@ -77,4 +77,7 @@ export class LoginComponent implements OnInit {
   get ConfirmPassword() {
     return this.loginForm.get('confirmPassword');
   }
+  submit(){
+
+  }
 }

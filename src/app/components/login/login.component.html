@@ -1,6 +1,7 @@
 <form
   class="px-5 py-2 mx-auto border border-info col-4"
   [formGroup]="loginForm"
+  (ngSubmit) = "submit()"
 >
   <div class="mb-3 mx-auto">
     <label class="form-label">Account</label>
