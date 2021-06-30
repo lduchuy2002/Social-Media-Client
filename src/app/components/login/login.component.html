@@ -1,0 +1,133 @@
+<form
+  class="px-5 py-2 mx-auto border border-info col-4"
+  [formGroup]="loginForm"
+>
+  <div class="mb-3 mx-auto">
+    <label class="form-label">Account</label>
+    <input
+      type="text"
+      class="form-control"
+      name="account"
+      formControlName="account"
+      [class.is-invalid]="Account.invalid && Account.touched"
+    />
+    <div
+      *ngIf="Account.invalid && (Account.touched || Account.dirty)"
+      style="display: flex; flex-direction: column"
+    >
+      <small *ngIf="Account.errors?.required" class="text-danger"
+        >Account is required</small
+      >
+      <small *ngIf="Account.errors.minlength" class="text-danger"
+        >Account must be at least 6 characters</small
+      >
+      <small *ngIf="Account.errors?.maxlength" class="text-danger"
+        >Account must be less then 16 characters</small
+      >
+      <small *ngIf="Account.errors?.pattern" class="text-danger"
+        >Account 's format is not allowed</small
+      >
+    </div>
+  </div>
+  <div class="mb-3 mx-auto" style="display: flex; flex-direction: column">
+    <label class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      formControlName="name"
+      [class.is-invalid]="Name.invalid && Name.touched"
+    />
+    <div
+      *ngIf="Name.invalid && (Name.touched || Name.dirty)"
+      style="display: flex; flex-direction: column"
+    >
+      <small class="text-danger" *ngIf="Name.errors.required"
+        >Name is required</small
+      >
+      <small class="text-danger" *ngIf="Name.errors.minlength"
+        >Name must be at least 4 characters</small
+      >
+      <small class="text-danger" *ngIf="Name.errors.maxlength"
+        >Name must be less then 24 characters</small
+      >
+      <small class="text-danger" *ngIf="Name.errors.pattern"
+        >Name 's format is not allowed</small
+      >
+    </div>
+  </div>
+  <div class="mb-3 mx-auto">
+    <label class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      formControlName="email"
+      [class.is-invalid]="Email.invalid && Email.touched"
+    />
+    <div
+      *ngIf="Email.invalid && (Email.touched || Email.dirty)"
+      style="display: flex; flex-direction: column"
+    >
+      <small class="text-danger" *ngIf="Email.errors?.required"
+        >Email is required</small
+      >
+      <small class="text-danger" *ngIf="Email.errors?.email"
+        >Email is invalid</small
+      >
+    </div>
+  </div>
+  <div id="emailHelp" class="form-text">
+    We'll never share your email with anyone else.
+  </div>
+
+  <div class="mb-3 mx-auto">
+    <label class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      formControlName="password"
+      [class.is-invalid]="Password.invalid && Password.touched"
+    />
+    <div *ngIf="Password.invalid && (Password.touched || Password.dirty)">
+      <small class="text-danger" *ngIf="Password.errors.required"
+        >Password is required</small
+      >
+      <small class="text-danger" *ngIf="Password.errors?.minlength"
+        >Password must be at least 6 characters
+      </small>
+      <small class="text-danger" *ngIf="Password.errors?.maxlength"
+        >Password must be less then 16 characters
+      </small>
+      <small class="text-danger" *ngIf="Password.errors?.pattern"
+        >Password 's format is not allowed
+      </small>
+    </div>
+  </div>
+  <div class="mb-3 mx-auto">
+    <label class="form-label">Confirm password</label>
+    <input
+      type="password"
+      class="form-control"
+      name="comfirmPassword"
+      formControlName="confirmPassword"
+      [class.is-invalid]="loginForm.errors?.misMatch || ConfirmPassword?.invalid && ConfirmPassword?.touched"
+    />
+    <div
+      *ngIf="
+        loginForm.errors?.misMatch || ConfirmPassword?.invalid && (ConfirmPassword?.touched || ConfirmPassword?.dirty)
+      "
+      style="display: flex; flex-direction: column;"
+    >
+      <small class="text-danger" *ngIf="ConfirmPassword.errors?.required"
+        >Confirm password is required</small
+      >
+      <small class="text-danger" *ngIf="loginForm.errors?.misMatch"
+        >Confirm password must be equal to password</small
+      >
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mx-auto d-block">Submit</button>
+  {{ loginForm.value | json }}
+</form>
